@@ -13,9 +13,8 @@ Route::view('/login', 'auth.login')->name('login');
 
 Route::view('/contacts', 'header.contacts')->name('contacts');
 
-Route::view
-('/about','header.about')->name('about');
+Route::view('/about','header.about')->name('about');
 
 //{{-- Here lies the controller woosh --}}
 
-Route::post('register', [AuthController::class, 'rehistro']);
+Route::post('register', [AuthController::class, 'register']);

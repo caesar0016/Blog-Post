@@ -9,3 +9,9 @@
 .title2 {
     @apply text-3xl font-bold text-center text-blue-600 mb-6;
 }
+/* In your app.css or a separate CSS file */
+.error {
+    color: #e53e3e;  /* Tailwind's red-700 color */
+    font-size: 0.875rem;  /* Slightly smaller text */
+    margin-top: 0.25rem;  /* Adds space above the error message */
+}
