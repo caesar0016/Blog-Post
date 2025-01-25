@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User; // Import the User model
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -17,7 +18,11 @@ class AuthController extends Controller
             'password' => ['required', 'confirmed']
         ]);
 
-        User::create($fields);
+        $user = User::create($fields);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
 
         // Create the user in the database
         dd($fields);

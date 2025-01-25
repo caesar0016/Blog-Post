@@ -18,3 +18,8 @@ class UserSeeder extends Seeder
         User::factory(10)->create();
     }
 }
+
+//steps to create a seeder
+//1. generate a file of seeder through artisan
+//2. Generate the factories
+//3. Run the seed
