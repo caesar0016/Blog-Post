@@ -17,4 +17,5 @@ Route::view('/about','header.about')->name('about');
 
 //{{-- Here lies the controller woosh --}}
 
-Route::post('register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
