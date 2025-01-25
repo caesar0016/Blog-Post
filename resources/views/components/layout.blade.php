@@ -18,10 +18,25 @@
                     <a href="{{route('about')}}" class="text-white hover:text-gray-800">About</a>
                     <a href="{{route('contacts')}}" class="text-white hover:text-gray-800">Contact</a>
                 </div>
+
+                @guest
+                    
                 <div class="flex items-center gap-4">
                     <a href="{{route('login')}}" class="text-white hover:text-gray-800">Login</a>
                     <a href="{{route('register')}}" class="text-white hover:text-gray-800">Register</a>
                 </div>
+
+                @endguest
+                @auth
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <div class="flex items-center gap-4">
+                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
+                            Logout
+                        </button>
+                    </div>
+                </form>
+            @endauth            
             </div>
         </nav>
     </header>
