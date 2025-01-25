@@ -6,18 +6,14 @@ Route::get('/', function () {
     return view('posts.index');
 })->name('home');
 
-Route::get('/register', function(){
-    return view('auth.register');
-})->name('register');
+Route::view('/register', 'auth.register')->name('register');
 
-Route::get('/login', function(){
-    return view('auth.login');
-})->name('login');
+Route::view('/login', 'auth.login')->name('login');
 
-Route::get('/contacts', function () {
-    return view('header.contacts');
-})->name('contacts');
+Route::view('/contacts', 'header.contacts')->name('contacts');
 
-Route::get('/about', function(){
-    return view('header.about');
-})->name('about');
+Route::view('/about','header.about')->name('about');
+
+//{{-- Here lies the controller woosh --}}
+
+Route::post('register', [AuthController::class, 'rehistro']);
