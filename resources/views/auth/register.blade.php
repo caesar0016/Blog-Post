@@ -2,8 +2,9 @@
     <h1 class="title1">Register Account</h1>
 
     <div class="mx-auto max-w-screen-sm bg-red-100 p-6 rounded-lg shadow-lg">
-        <form action="" method="POST">
-            
+        <form action="{{route('register')}}" method="POST">
+            @csrf
+
             {{-- username --}}
             <div class="mb-4">
                 <label for="username" class="block text-lg font-medium text-gray-700">Username</label>
