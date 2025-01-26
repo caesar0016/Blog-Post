@@ -6,7 +6,7 @@ use App\Models\User; // Import the User model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController extends Controller
+class AuthController extends Controller 
 {
     // This is the register function
     public function register(Request $request)
