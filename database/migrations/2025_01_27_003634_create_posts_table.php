@@ -12,14 +12,13 @@ return new class extends Migration
 
      //Up method will create a post method for us
     public function up(): void
-    {//title body closing
+    {//title body 
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             //the title is not null here
             $table->string('title')->nullable(false);
             $table->text('body')->nullable(true);
-            $table->text('closing')->nullable(false);
             $table->timestamps();
         });
     }
