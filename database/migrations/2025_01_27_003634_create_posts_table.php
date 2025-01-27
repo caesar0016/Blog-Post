@@ -15,7 +15,7 @@ return new class extends Migration
     {//title body closing
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             //the title is not null here
             $table->string('title')->nullable(false);
             $table->text('body')->nullable(true);
