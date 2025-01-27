@@ -13,9 +13,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-        return view('posts.index');
+        //Gets the latest also
+        // $posts = Post::orderBy('created_at', 'desc')->get();
+
+        //gets the oldest first
+        // $posts = Post::orderBy('created_at', 'asc')->get();
+        
+        //This method gets the latest
+        $posts = Post::latest()->get();
+    
+        // Pass the posts variable to the view
+        return view('posts.index', ['posts' => $posts]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
