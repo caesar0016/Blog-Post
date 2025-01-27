@@ -4,20 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 
-Route::get('/', function () {
-    return view('posts.index');
-})->name('home');
+// Route::get('/', function () {
+//     return view('posts.index');
+// })->name('home');
 
-Route::resource('post', PostController::class);
+Route::redirect('/', 'posts');
+
+Route::resource('posts', PostController::class);
 
 
 // Routes for authenticated users
 Route::middleware('auth')->group(function() {
-    
     Route::view('/about', 'header.about')->name('about');
     Route::view('/contacts', 'header.contacts')->name('contacts');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    
 });
 
 // Routes for guests (unauthenticated users)

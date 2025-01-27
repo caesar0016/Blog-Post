@@ -12,10 +12,10 @@
     <header class="bg-slate-700 shadow-md">
         <nav class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <a href="{{route('home')}}" class="text-xl font-semibold text-white">Sample Project</a>
+                <a href="{{route('posts.index')}}" class="text-xl font-semibold text-white">Sample Project</a>
                 @auth
                 <div class="flex space-x-4">
-                    <a href="{{route('home')}}" class="text-white hover:text-gray-800">Home</a>
+                    <a href="{{route('posts.index')}}" class="text-white hover:text-gray-800">Home</a>
                     <a href="{{route('about')}}" class="text-white hover:text-gray-800">About</a>
                     <a href="{{route('contacts')}}" class="text-white hover:text-gray-800">Contact</a>
                 </div>
