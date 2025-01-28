@@ -22,7 +22,7 @@ class PostController extends Controller
         // $posts = Post::orderBy('created_at', 'asc')->get();
         
         //This method gets the latest
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(6);
     
         // Pass the posts variable to the view
         return view('posts.index', ['posts' => $posts]);
