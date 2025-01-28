@@ -16,6 +16,7 @@ Route::resource('posts', PostController::class);
 // Routes for authenticated users
 Route::middleware('auth')->group(function() {
     Route::view('/about', 'header.about')->name('about');
+    Route::view('/users', 'users.profile')->name('profile');
     Route::view('/contacts', 'header.contacts')->name('contacts');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

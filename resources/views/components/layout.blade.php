@@ -16,7 +16,7 @@
                 @auth
                 <div class="flex space-x-4">
                     <a href="{{route('posts.index')}}" class="text-white hover:text-gray-800">Home</a>
-                    <a href="{{route('about')}}" class="text-white hover:text-gray-800">About</a>
+                    <a href="{{route('profile')}}" class="text-white hover:text-gray-800">Profile</a>
                     <a href="{{route('contacts')}}" class="text-white hover:text-gray-800">Contact</a>
                 </div>
                 @endauth
