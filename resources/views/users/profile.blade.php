@@ -50,7 +50,8 @@
     <h1 class="title2 mt-4">Your latest Posts</h1>
     <div class="grid grid-cols-2 gap-6 mt-4">
         @foreach ($posts as $item)
-            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="card1">
+                
                 {{-- Title --}}
                 <div class="mb-4">
                     <h3 class="text-xl font-semibold text-gray-800">{{ $item->title }}</h3>
@@ -71,7 +72,7 @@
     </div>
 
     {{-- Pagination Links --}}
-    
+
     <div class="mt-4">
         {{$posts->links()}} <!-- Display pagination links -->
     </div>
