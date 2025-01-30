@@ -74,15 +74,33 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        //-- This edit the data
+
+        return view('users.editPost', ['post'=> $post]);
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        //
+        //-- THis is the update function
+
+        $fields = $request->validate([
+
+            'title' => ['required', 'max:255'],
+            'body' => ['required']
+
+        ]); 
+
+        //Update a post
+        $post->update($fields);
+        
+        // return redirect()->with('success', 'Done updating the posts');
+
+        return redirect()->route('profile')->with('success', 'Your post was updated!!');
+
     }
 
     /**
@@ -97,3 +115,4 @@ class PostController extends Controller
         return back()->with('deleted', 'Post was deleted!...');
     }
 }
+

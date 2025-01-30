@@ -56,15 +56,28 @@
         </form>
     </div>
     <h1 class="title2 mt-4">Your latest Posts</h1>
-    <div class="grid grid-cols-2 gap-6 mt-4">
+    <div class="grid grid-cols-2 gap-6">
         @foreach ($posts as $item)
-            <x-PostsCards :item="$item"/>
+            <x-PostsCards :item="$item">
 
-            <form action="{{ route('posts.destroy', $item)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button>Delete daw</button>
-            </form>
+                {{-- Update the post--}}
+                <form action="{{ route('posts.edit', $item->id) }}">
+                    
+                    <button class="bg-blue-500 text-white px-2 py-1 text-xs rounded-md">
+                        Update
+                    </button>
+
+                </form>
+
+                {{-- Delete the post function --}}
+                <form action="{{ route('posts.destroy', $item)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="bg-red-500 text-white px-2 py-1 text-xs rounded-md">
+                        Delete
+                    </button>
+                </form>
+            </x-PostsCards>
         @endforeach
     </div>
 
