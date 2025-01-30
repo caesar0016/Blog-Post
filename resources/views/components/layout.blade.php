@@ -9,7 +9,7 @@
 </head>
 <body class="font-sans bg-gray-100 text-gray-900">
 
-    <header class="bg-slate-700 shadow-md">
+    <header class="bg-slate-700 shadow-md sticky top-0 z-10">
         <nav class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <a href="{{route('posts.index')}}" class="text-xl font-semibold text-white">Sample Project</a>
@@ -20,15 +20,14 @@
                     <a href="{{route('contacts')}}" class="text-white hover:text-gray-800">Contact</a>
                 </div>
                 @endauth
-
+    
                 @guest
-                    
                 <div class="flex items-center gap-4">
                     <a href="{{route('login')}}" class="text-white hover:text-gray-800">Login</a>
                     <a href="{{route('register')}}" class="text-white hover:text-gray-800">Register</a>
                 </div>
-
                 @endguest
+    
                 @auth
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
@@ -38,10 +37,10 @@
                         </button>
                     </div>
                 </form>
-            @endauth            
+                @endauth            
             </div>
         </nav>
-    </header>
+    </header>    
 
     <main class="py-8 px-4 mx-auto max-w-7xl">
         {{-- Content goes here --}}
