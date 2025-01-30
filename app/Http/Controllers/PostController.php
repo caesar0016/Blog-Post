@@ -64,8 +64,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        // dd($post);  // Check the post data here
+        return view('posts.show', ['post' => $post]);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
