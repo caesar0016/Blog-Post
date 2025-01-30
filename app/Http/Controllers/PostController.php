@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -74,8 +75,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //-- This edit the data
 
+        //-- This is gate authorize that have modify function
+        //-- modify function is in the policy of PostsController
+        Gate::authorize('modify', $post);
+
+        //-- This edit the data
         return view('users.editPost', ['post'=> $post]);
         
     }
