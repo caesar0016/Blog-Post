@@ -1,4 +1,4 @@
-@props(['item'])
+@props(['item', 'full' => false])
 <div class="card1">
                 
     {{-- Title --}}
@@ -12,9 +12,22 @@
     </div>
     
     {{-- Body --}}
-    <div class="text-gray-600">
-        {{-- Thoe body, 15 is cut the card when 15 word --}}
-        <span>{{ Str::words($item->body, 15) }}</span>
-        <a href="{{ route('posts.show', $item)}}" class="text-blue-700 ml-2">See more</a>
-    </div>
+    @if ($full)
+
+        <div class="text-gray-600">
+            {{-- Thoe body, 15 is cut the card when 15 word --}}
+            <span>{{ ($item->body ) }}</span>
+        </div>
+        
+    @else
+
+        <div class="text-gray-600">
+            {{-- Thoe body, 15 is cut the card when 15 word --}}
+            <span>{{ Str::words($item->body, 15) }}</span>
+            <a href="{{ route('posts.show', $item)}}" class="text-blue-700 ml-2">See more</a>
+        </div>
+
+    @endif
+
+    
 </div>

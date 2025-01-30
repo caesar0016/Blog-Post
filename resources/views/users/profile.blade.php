@@ -1,6 +1,10 @@
 <x-layout>
-    <h1 class="title1">Profile</h1>
-    
+
+    {{-- Display the username profile --}}
+    <h1 class="title1">{{auth()->user()->username}}</h1>
+
+    {{-- Display the total posts that users have --}}
+    <h2>Total Post: {{ $posts->total() }}</h2>
     
     {{-- This is the post form --}}
     <div class="mx-auto max-w-screen-sm bg-slate-200 p-6 rounded-lg shadow-lg">
@@ -15,7 +19,11 @@
                     It can be customized by other color --}}
                     <x-flashMsg msg="{{ session('success')}}" bg="bg-pink-400"/>
                 </div>
-            
+            @elseif (session('deleted'))
+                <div class="mb-2">
+                    <x-flashMsg msg=" {{ session('deleted')}}"
+                    bg="bg-red-500"/>
+                </div>
             @endif
             
             
@@ -51,6 +59,12 @@
     <div class="grid grid-cols-2 gap-6 mt-4">
         @foreach ($posts as $item)
             <x-PostsCards :item="$item"/>
+
+            <form action="{{ route('posts.destroy', $item)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button>Delete daw</button>
+            </form>
         @endforeach
     </div>
 
