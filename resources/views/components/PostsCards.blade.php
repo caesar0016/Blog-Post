@@ -1,24 +1,26 @@
 @props(['item', 'full' => false])
 <div class="card1">
 
-    {{-- This is the Image --}}
-
+    {{-- This is the Cover Photo --}}
     <div>
-        @if ($item->image)
+        <div class="h-65 rounded-md mb-4 w-full object-cover overflow-hidden">
 
-           <img src="{{ asset('storage/' . $item->image )}}" 
-           alt=" -- Cover Photo --">
-            
-        @else
-
-            <img src="{{ asset('storage/cover_pictures/default.jpg') }}" 
-            alt="-- Cover Photo --">
-
-        @endif
-    </div>
+            @if ($item->image)
+    
+               <img src="{{ asset('storage/' . $item->image )}}" 
+               alt=" -- Cover Photo --">
                 
+            @else
+    
+                <img src="{{ asset('storage/cover_pictures/default.jpg') }}" 
+                alt="-- Cover Photo --">
+    
+            @endif
+        </div>
+    </div>
+
     {{-- Title --}}
-    <div class="mb-4">
+    <div class="mb-4 mt-2"> 
         <h3 class="text-xl font-semibold text-gray-800">{{ $item->title }}</h3>
     </div>
     

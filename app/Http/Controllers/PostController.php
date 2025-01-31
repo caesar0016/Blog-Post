@@ -49,7 +49,7 @@ class PostController extends Controller
     $request->validate([
         'title' => ['required', 'max:255'],
         'body' => ['required'],
-        'image' => 'mimes:jpg,bmp,png',
+        'image' => 'mimes:jpg,webp,png',
     ]);
 
     $path = null;
@@ -105,16 +105,32 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //-- THis is the update function
+        // dd($request);
 
         $fields = $request->validate([
+        'title' => 'required|max:255',
+        'body' => 'required',
+        'image' => 'nullable|file|max:3000|mimes:webp, png,jpg',  // Correct syntax for image validation
+    ]);
 
-            'title' => ['required', 'max:255'],
-            'body' => ['required']
 
-        ]); 
-
+        $path = $post->image ?? null;
+        //-- Check if the user uploaded an image
+        if($request->hasFile('image')){
+            //-- If image exist delete the image assosciated
+            if($post->image){
+                Storage::disk('public')->delete($post->image);
+            }
+        }
+        //--This u[date the image under disk public into coverPictures]
+        $path = Storage::disk('public')->put('cover_pictures', $request->image);
+        
         //Update a post
-        $post->update($fields);
+        $post->update([
+            'title' => $request->title,
+            'body' => $request->body,
+            'image' =>$path
+        ]);
         
         // return redirect()->with('success', 'Done updating the posts');
 
@@ -127,6 +143,17 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Gate::authorize('modify', $post);
+
+        //-- delete image if exist;
+
+        if($post->image){
+
+            //-- storage public delete posts on imagetbl
+            Storage::disk('public')->delete($post->image);
+
+        }
+
         //-- This deletes the posts
         $post->delete();
         // dd('ok');

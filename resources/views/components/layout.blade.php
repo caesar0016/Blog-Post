@@ -12,7 +12,7 @@
     <header class="bg-slate-700 shadow-md sticky top-0 z-10">
         <nav class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <a href="{{route('posts.index')}}" class="text-xl font-semibold text-white">Sample Project</a>
+                <a href="{{route('posts.index')}}" class="text-xl font-semibold text-white">{{ env('APP_NAME') }}</a>
                 @auth
                 <div class="flex space-x-4">
                     <a href="{{route('posts.index')}}" class="text-white hover:text-gray-800">Home</a>

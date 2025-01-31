@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123'), // Correct usage of Hash::make()
         ]);
 
-    //    Post::factory(15)->create();
+        Post::factory(15)->create();
     }
 }

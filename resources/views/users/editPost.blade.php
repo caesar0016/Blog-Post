@@ -5,7 +5,7 @@
 
         {{-- This is the post form --}}
     <div class="mx-auto max-w-screen-sm bg-slate-200 p-6 rounded-lg shadow-lg">
-        <form action="{{ route('posts.update', $post) }}" method="post">
+        <form action="{{ route('posts.update', $post) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
@@ -31,6 +31,29 @@
                     <p class="text-red-700 mt-1 text-sm">{{ $message }}</p>
                 @enderror
             </div>
+
+            {{-- Current Cover Photo if it exists --}}
+            @if ($post->image)
+            <div class="h-65 rounded-md mb-4 w-full object-cover overflow-hidden">
+
+                <label class="block text-lg font-medium text-gray-700">Current Cover Photo</label>
+
+                   <img src="{{ asset('storage/' . $post->image )}}" 
+                   alt=" -- Cover Photo --">
+                    
+                @endif
+            </div>
+            {{-- Session Messages --}}
+
+            <div class="mb-4">
+                <input type="file" name="image" id="image">
+
+                @error('image')
+                <p class="text-red-700 mt-1 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Submit Button --}}
 
             {{-- Submit Button --}}
             <div class="mb-4">

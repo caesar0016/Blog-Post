@@ -15,9 +15,9 @@
             @if (session('success'))
             
             <div>
-                {{-- bg-pink the customize bg. 
+                {{-- bg-green-(n) the customize bg. 
                 It can be customized by other color --}}
-                <x-flashMsg msg="{{ session('success')}}" bg="bg-pink-400"/>
+                <x-flashMsg msg="{{ session('success')}}" bg="bg-green-500"/>
             </div>
             @elseif (session('deleted'))
             <div class="mb-2">
