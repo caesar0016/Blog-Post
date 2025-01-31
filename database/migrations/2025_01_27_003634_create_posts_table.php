@@ -19,6 +19,7 @@ return new class extends Migration
             //the title is not null here
             $table->string('title')->nullable(false);
             $table->text('body')->nullable(true);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

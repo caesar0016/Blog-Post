@@ -1,5 +1,21 @@
 @props(['item', 'full' => false])
 <div class="card1">
+
+    {{-- This is the Image --}}
+
+    <div>
+        @if ($item->image)
+
+           <img src="{{ asset('storage/' . $item->image )}}" 
+           alt=" -- Cover Photo --">
+            
+        @else
+
+            <img src="{{ asset('storage/cover_pictures/default.jpg') }}" 
+            alt="-- Cover Photo --">
+
+        @endif
+    </div>
                 
     {{-- Title --}}
     <div class="mb-4">

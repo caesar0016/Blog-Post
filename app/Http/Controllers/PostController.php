@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -42,23 +43,36 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-      //  dd(Auth::user()->posts());
-        //Validate
-        $fields = $request->validate([
+{
+    // dd($request);
+    // Validate the input
+    $request->validate([
+        'title' => ['required', 'max:255'],
+        'body' => ['required'],
+        'image' => 'mimes:jpg,bmp,png',
+    ]);
 
-            'title' => ['required', 'max:255'],
-            'body' => ['required']
-
-        ]); 
-
-        //Create a post
-      //  Post::create(['user_id' => Auth::id(), ...$fields]);
-        Auth::user()->posts()->create($fields);
-        return back()->with('success', 'Post was created lol');
-
-        //Redirect the user
+    $path = null;
+    // Check if the user uploaded an image
+    if ($request->hasFile('image')) {
+        // Ensure the file is valid before storing it
+        if ($request->file('image')->isValid()) {
+            $path = $request->file('image')->store('cover_pictures', 'public');
+        } else {
+            return back()->with('error', 'Invalid image file');
+        }
     }
+
+    // Create a new post
+    Auth::user()->posts()->create([
+        'title' => $request->title,
+        'body' => $request->body,
+        'image' => $path,
+    ]);
+
+    return back()->with('success', 'Post was created successfully!');
+}
+
 
     /**
      * Display the specified resource.

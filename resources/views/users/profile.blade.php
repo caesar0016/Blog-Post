@@ -8,22 +8,22 @@
     
     {{-- This is the post form --}}
     <div class="mx-auto max-w-screen-sm bg-slate-200 p-6 rounded-lg shadow-lg">
-        <form action="{{ route('posts.store') }}" method="POST">
+        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             {{-- Session Messages --}}
             @if (session('success'))
             
-                <div>
-                    {{-- bg-pink the customize bg. 
-                    It can be customized by other color --}}
-                    <x-flashMsg msg="{{ session('success')}}" bg="bg-pink-400"/>
-                </div>
+            <div>
+                {{-- bg-pink the customize bg. 
+                It can be customized by other color --}}
+                <x-flashMsg msg="{{ session('success')}}" bg="bg-pink-400"/>
+            </div>
             @elseif (session('deleted'))
-                <div class="mb-2">
-                    <x-flashMsg msg=" {{ session('deleted')}}"
-                    bg="bg-red-500"/>
-                </div>
+            <div class="mb-2">
+                <x-flashMsg msg=" {{ session('deleted')}}"
+                bg="bg-red-500"/>
+            </div>
             @endif
             
             
@@ -37,15 +37,26 @@
                 <p class="text-red-700 mt-1 text-sm">{{ $message }}</p>
                 @enderror
             </div>
-
+            
             {{-- Post Body --}}
             <div class="mb-4">
                 <label for="body" class="block text-lg font-medium text-gray-700">Post Content</label>
                 <textarea name="body" rows="10" class="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 
                 @error('body') ring-2 ring-red-500 @enderror">{{ old('body') }}</textarea>
-
+                
                 @error('body')
-                    <p class="text-red-700 mt-1 text-sm">{{ $message }}</p>
+                <p class="text-red-700 mt-1 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+
+            {{-- Session Messages --}}
+
+            <div class="mb-4">
+                <label for="image">Cover Photo</label>
+                <input type="file" name="image" id="image">
+
+                @error('image')
+                <p class="text-red-700 mt-1 text-sm">{{ $message }}</p>
                 @enderror
             </div>
 
