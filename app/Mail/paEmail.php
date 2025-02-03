@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
@@ -16,7 +17,7 @@ class paEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public User $user)
     {
         //
     }
@@ -28,7 +29,6 @@ class paEmail extends Mailable
     {
         return new Envelope(
             subject: 'This is Test Email',
-            from: new Address('dapiton@example.com', 'dapits'),
         );
     }
 

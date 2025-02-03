@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Mail\paEmail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
@@ -17,21 +18,18 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        Mail::to('receiver@email.com')->send(new paEmail);
+{
+    // Assuming you're sending an email to the first user in the database
+    $user = Auth::user(); // You can adjust this to fetch the user you need
 
-        //Gets the latest also
-        // $posts = Post::orderBy('created_at', 'desc')->get();
+    // Mail::to('receiver@email.com')->send(new paEmail($user));
 
-        //gets the oldest first
-        // $posts = Post::orderBy('created_at', 'asc')->get();
-        
-        //This method gets the latest
-        $posts = Post::latest()->paginate(6);
+    // Gets the latest posts
+    $posts = Post::latest()->paginate(6);
     
-        // Pass the posts variable to the view
-        return view('posts.index', ['posts' => $posts]);
-    }
+    // Pass the posts variable to the view
+    return view('posts.index', ['posts' => $posts]);
+}
     
 
     /**
