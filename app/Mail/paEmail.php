@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -48,7 +49,10 @@ class paEmail extends Mailable
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array
-    {
-        return [];
-    }
+{
+    return [
+        // Provide the file path relative to the public disk
+        Attachment::fromStorageDisk('public', 'cover_pictures/default.jpg')
+    ];
+}
 }
