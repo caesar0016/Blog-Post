@@ -22,7 +22,7 @@ class PostController extends Controller
     // Assuming you're sending an email to the first user in the database
     $user = Auth::user(); // You can adjust this to fetch the user you need
 
-    // Mail::to('receiver@email.com')->send(new paEmail($user));
+    Mail::to('receiver@email.com')->send(new paEmail(Auth::user()));
 
     // Gets the latest posts
     $posts = Post::latest()->paginate(6);
